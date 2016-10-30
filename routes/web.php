@@ -19,4 +19,4 @@ Route::get('/', function () {
 //     return view('test.toto');
 // });
 
-Route::get('toto', 'Controller@tota');
+Route::get('actu','controller@actu');

@@ -10,9 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    function tota(){
-    	$titre = 'Je suis un titre';
-    	$retour = array('titre' => $titre);
-    	return view('test.toto',$retour);
+    function actu(){
+    	return view('actu');
     }
 }
