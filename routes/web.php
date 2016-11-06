@@ -11,12 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function()
+{
+	return view('welcome');
 });
 
-// Route::get('/toto', function () {
-//     return view('test.toto');
-// });
 
 Route::get('actu','controller@actu');
+Route::get('calendrier','controller@calendrier');
+Route::get('equipe','controller@equipe');
+Route::get('resultats','controller@resultats');
+Route::get('information','controller@information');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
