@@ -10,8 +10,9 @@
             <a href="<?php echo e(url('equipe')); ?>">équipes</a>
             <a href="<?php echo e(url('calendrier')); ?>">calendrier</a>
             <a href="<?php echo e(url('resultats')); ?>">Résultats</a>
-            <a href="<?php echo e(url('connexion')); ?>">Connexion</a>
             <a href="<?php echo e(url('information')); ?>">Informations</a>
+            <a href="<?php echo e(url('/login')); ?>">Identification</a>
+            <a href="<?php echo e(url('/register')); ?>">Inscription</a>
         </div>
     </div>
 </div>

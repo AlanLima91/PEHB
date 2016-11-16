@@ -84,7 +84,7 @@
                     <li><a href="{{ url('actu') }}">Actualités</a></li>
                     <li><a href="{{ url('equipe') }}">équipes</a></li>
                     <li><a href="{{ url('calendrier') }}">calendrier</a></li>
-                    <li><a href="{{ url('resultat') }}">Résultats</a></li>
+                    <li><a href="{{ url('resultats') }}">Résultats</a></li>
                     <li><a href="{{ url('information') }}">Informations</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

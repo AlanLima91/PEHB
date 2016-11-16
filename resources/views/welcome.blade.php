@@ -11,8 +11,9 @@
             <a href="{{ url('equipe') }}">équipes</a>
             <a href="{{ url('calendrier') }}">calendrier</a>
             <a href="{{ url('resultats') }}">Résultats</a>
-            <a href="{{ url('connexion') }}">Connexion</a>
             <a href="{{ url('information') }}">Informations</a>
+            <a href="{{ url('/login') }}">Identification</a>
+            <a href="{{ url('/register') }}">Inscription</a>
         </div>
     </div>
 </div>
