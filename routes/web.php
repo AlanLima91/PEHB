@@ -18,6 +18,8 @@ Route::get('/', function()
 
 
 Route::get('actu','controller@actu');
+Route::get('actu/cree','controller@new_actu');
+Route::post('actu/cree','controller@add_actu');
 Route::get('calendrier','controller@calendrier');
 Route::get('equipe','controller@equipe');
 Route::get('resultats','controller@resultats');
