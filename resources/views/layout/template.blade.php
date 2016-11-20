@@ -64,9 +64,11 @@
                 margin-bottom: 30px;
             }
         </style>
-	</head>
-	<body>
-		<nav class="navbar navbar-inverse">
+    </head>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <body>
+        <nav class="navbar navbar-inverse">
           <div class="container">
             <div class="navbar-header">
 
@@ -119,9 +121,8 @@
         </nav>
         @yield("content")
     </body>
-	<script type="text/javascript" src="https://cdn.datatables.net:r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net:r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

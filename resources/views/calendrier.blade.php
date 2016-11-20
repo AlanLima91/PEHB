@@ -1,14 +1,10 @@
 @extends('layout.template')
 
-
 @section('content')
-<link href="{{asset('calendar/css/responsive-calendar.css')}}" rel="stylesheet">
-<link href="{{asset('calendar/css/fullcalendar.css')}}" rel='stylesheet' />
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="{{asset('calendar/js/fullcalendar.min.js')}}"></script>
-<script src="{{asset('calendar/js/lang-all.js')}}"></script>
-<script src="{{asset('calendar/js/moment.min.js')}}"></script>
+<link href="{{asset('css/fullcalendar.css')}}" rel='stylesheet' />
+<script src="{{asset('js/moment.min.js')}}"></script>
+<script src="{{asset('js/fullcalendar.min.js')}}"></script>
+<script src="{{asset('js/locale-all.js')}}"></script>
 <script>
 $(document).ready(function() {
   	// Initialisation du calendrier et de c'est méthode 
@@ -18,7 +14,7 @@ $(document).ready(function() {
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		lang: 'fr',
+		locale: 'fr',
 		buttonIcons: false, // show the prev/next text
 		weekNumbers: true,
 		editable: true,
@@ -26,17 +22,9 @@ $(document).ready(function() {
 		eventLimit: true, // allow "more" link when too many events      
 		timeFormat:  'H:mm',
     });
-
+});
 </script>
 <style>
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-    font-size: 14px;
-  }
-
   #top {
     background: #eee;
     border-bottom: 1px solid #ddd;
@@ -52,10 +40,9 @@ $(document).ready(function() {
   }
 
 </style>
-</head>
-<body>
-  	<!-- Div qui affiche le calendrier -->
-  	<div id='calendar'></div>
-</body>
+
+<!-- Div qui affiche le calendrier -->
+<div id='calendar'></div>
+
 
 @endsection
