@@ -2,13 +2,13 @@
 
 
 @section('content')
-<link href="{{asset('calendar/css/responsive-calendar.css')}}" rel="stylesheet">
-<link href="{{asset('calendar/css/fullcalendar.css')}}" rel='stylesheet' />
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="{{asset('calendar/js/fullcalendar.min.js')}}"></script>
-<script src="{{asset('calendar/js/lang-all.js')}}"></script>
-<script src="{{asset('calendar/js/moment.min.js')}}"></script>
+<link href="{{asset('Calendar/css/responsive-calendar.css')}}" rel="stylesheet">
+<link href="{{asset('Calendar/css/fullcalendar.css')}}" rel='stylesheet' />
+<script src="{{asset('lib/js/jquery.min.js')}}"></script>
+<script src="{{asset('Calendar/js/fullcalendar.min.js')}}"></script>
+<script src="{{asset('Calendar/js/lang-all.js')}}"></script>
+<!-- <script src="{{asset('Calendar/js/jquery.min.js')}}"></script> -->
+<script src="{{asset('Calendar/js/moment.min.js')}}"></script>
 <script>
 $(document).ready(function() {
   	// Initialisation du calendrier et de c'est méthode 
@@ -25,18 +25,10 @@ $(document).ready(function() {
 		displayEventEnd: true,
 		eventLimit: true, // allow "more" link when too many events      
 		timeFormat:  'H:mm',
-    });
-
+    })
+});
 </script>
 <style>
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-    font-size: 14px;
-  }
-
   #top {
     background: #eee;
     border-bottom: 1px solid #ddd;
@@ -52,10 +44,7 @@ $(document).ready(function() {
   }
 
 </style>
-</head>
-<body>
   	<!-- Div qui affiche le calendrier -->
   	<div id='calendar'></div>
-</body>
 
 @endsection

@@ -8,6 +8,12 @@ create table categories(
 	created_at timestamp,
 	primary key(id)
 );
+create table informations(
+	id int(11) not null auto_increment,
+	contact text,
+	infos text,
+	primary key(id)
+);
 create table equipe(
 	id int(11) not null auto_increment,
 	nom varchar(20),
@@ -38,7 +44,7 @@ create table role(
 	name varchar(20),
 	primary key(id)
 );
-create table utilisateur(
+create table users(
 	id int(11) not null auto_increment,
 	nom varchar(20),
 	prenom varchar(20),
@@ -57,7 +63,7 @@ create table utilisateur(
 create table user_role(
 	id_user int(11) not null,
 	id_role int(11)not null,
-	foreign key (id_user) references utilisateur(id),
+	foreign key (id_user) references users(id),
 	foreign key (id_role) references role(id)
 );
 
@@ -71,6 +77,7 @@ create table planning_equipe(
 create table news(
 	id int(11) not null auto_increment,
 	name varchar(20),
+	contenu text,
 	updated_at timestamp,
 	created_at timestamp,
 	primary key(id)
