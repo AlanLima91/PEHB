@@ -20,14 +20,13 @@ class controller extends BaseController
     {
         return view('actu.new');
     }
-    function add_actu()
+    function add_actu() // la saisie dans la vue new est enregistré dans la DB
     {
         DB::table('news')->insert([
             [ 'name' => $_POST['titre'], 'contenu' =>  $_POST['description'], 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
         return controller::actu();
     }
-
 /////////////////////////////////////////////////////////
 
     function equipe()
@@ -36,6 +35,10 @@ class controller extends BaseController
     }
     function new_categorie()
     {
+        return view('equipe.Addcategorie');
+    }
+    function add_categorie()
+    {
         DB::table('categories')->insert([
             [ 'name' => $_POST['name'], 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
@@ -43,9 +46,52 @@ class controller extends BaseController
     }
     function new_equipe()
     {
+        return view('equipe.Addequipe');
+    }
+    function selectAllcategories() //Permet d'afficher toutes les catégories
+    {
+        $requete = "select * from Categories ;"; //Connexion a la table Catégories
+        $pdo = connexion (); //On Se connecte
+        if ($pdo != null)
+        {
+            $select = $pdo->prepare($requete);
+            $select->execute ();
+            $resultats = $select->fetchAll();
+            return $resultats;
+        }
+        else 
+        {
+            return null;
+        }
+    }
+    function add_equipe()
+    {
 
     }
+    function selectAllequipe()
+    {
+        $requete = "select * from equipe ;";
+        $pdo = connexion ();
+        if ($pdo != null)
+        {
+            $select = $pdo->prepare($requete);
+            $select->execute ();
+            $resultats = $select->fetchAll();
+            return $resultats;
+        }
+        else 
+        {
+            return null;
+        }
+    }
+    function new_joueur()
+    {
+        return view('equipe.Addjoueur');
+    }
+    function add_joueur()
+    {
 
+    }
 /////////////////////////////////////////////////////////
 
     function resultats()
