@@ -25,7 +25,7 @@ class Controller extends BaseController
         DB::table('news')->insert([
             [ 'name' => $_POST['titre'], 'contenu' =>  $_POST['description'], 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
-        return controller::actu();
+        return redirect('actu');
     }
 /////////////////////////////////////////////////////////
 
