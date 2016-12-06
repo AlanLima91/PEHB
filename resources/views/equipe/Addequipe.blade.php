@@ -9,13 +9,11 @@
 					<form method = "post" action = "{{ url('equipe') }}">
 						Nom : <input required type="text" name="name" id="name" value="">
 						Catégorie : <select name ="id"> <!-- On choisit parmi les catégories deja existante -->
-						<?php
-							$resultats = controller::selectAllcategories();
-							foreach ($resultats as $resultats) 
-							{
-								echo"<option value =".$resultats['id'].">".$resultats['name']."</option>";
-							}
-						?>
+						@if(!empty($resultats))
+							@foreach($resultats as $resultat)
+								<option value =".$resultats['id'].">".$resultats['name']."</option>;
+							@endforeach
+						@endif
 						</select>
 						<button type='submit' class='btn btn-primary'>Envoyer</button>
 					</form>

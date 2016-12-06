@@ -6,7 +6,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Ajouter une catégorie</div>
                 <div class="panel-body">
-					<form method = "post" action = "{{ url('equipe') }}">
+					<form method = "post" action = "{{ url('equipe/Ajoutcategorie') }}">
 						Nom : <input required type="text" name="name" id="name" value="">
 						<button type='submit' class='btn btn-primary'>Envoyer</button>
 					</form>

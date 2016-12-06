@@ -11,13 +11,11 @@
 						prenom : <input required type="text" name="prenom" id="prenom" value="">
 						Licence :<input required type="number" name="licence" id="licence" value="">
 						Equipe : <select name ="id">
-							<?php
-								$resultats = controller::selectAllequipe();
-								foreach ($resultats as $resultats) 
-								{
-									echo"<option value =".$resultats['id'].">".$resultats['name']."</option>";
-								}
-							?>
+						@if(!empty($resultats))
+							@foreach($resultats as $resultat) 
+								<option value =".{$resultat['id']}.">".{$resultat['name']}."</option>";
+							@endforeach
+						@endif
 						</select>
 						<button type='submit' class='btn btn-primary'>Envoyer</button>
 					</form>
