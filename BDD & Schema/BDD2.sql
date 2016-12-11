@@ -36,11 +36,11 @@ CREATE TABLE Joueur(
 #------------------------------------------------------------
 
 CREATE TABLE Categorie(
-        id_Categorie    int NOT NULL ,
+        id_Categorie    int Auto_increment NOT NULL ,
         name            Varchar(25) ,
         created_at      TimeStamp NOT NULL ,
         updated_at      TimeStamp NOT NULL ,
-        PRIMARY KEY (id_Categorie ),
+        PRIMARY KEY (id_Categorie )
 )ENGINE=InnoDB;
 
 #------------------------------------------------------------
@@ -50,7 +50,7 @@ CREATE TABLE Categorie(
 CREATE TABLE Equipe(
         id_Equipe int (11) Auto_increment  NOT NULL ,
         name      Varchar (25) ,
-        id_Categorie Varchar (25) ,
+        id_Categorie int (25) ,
         PRIMARY KEY (id_Equipe ),
         FOREIGN KEY (id_Categorie) REFERENCES Categorie(id_Categorie)
 )ENGINE=InnoDB;
