@@ -26,20 +26,33 @@ CREATE TABLE Joueur(
         Prenom             Varchar (25) ,
         email              Varchar (25) ,
         Annee_de_naissance Year ,
-        id                 Int NOT NULL ,
+        id_Equipe          Int NOT NULL ,
         PRIMARY KEY (Licence )
 )ENGINE=InnoDB;
 
+
+#------------------------------------------------------------
+# Table: Catégorie
+#------------------------------------------------------------
+
+CREATE TABLE Categorie(
+        id_Categorie    int NOT NULL ,
+        name            Varchar(25) ,
+        created_at      TimeStamp NOT NULL ,
+        updated_at      TimeStamp NOT NULL ,
+        PRIMARY KEY (id_Categorie ),
+)ENGINE=InnoDB;
 
 #------------------------------------------------------------
 # Table: Equipe
 #------------------------------------------------------------
 
 CREATE TABLE Equipe(
-        id           int (11) Auto_increment  NOT NULL ,
-        categorie    Varchar (25) ,
-        id_Categorie Int NOT NULL ,
-        PRIMARY KEY (id )
+        id_Equipe int (11) Auto_increment  NOT NULL ,
+        name      Varchar (25) ,
+        id_Categorie Varchar (25) ,
+        PRIMARY KEY (id_Equipe ),
+        FOREIGN KEY (id_Categorie) REFERENCES Categorie(id_Categorie)
 )ENGINE=InnoDB;
 
 
@@ -85,11 +98,11 @@ CREATE TABLE User(
 #------------------------------------------------------------
 
 CREATE TABLE VS(
-        id         int (11) Auto_increment  NOT NULL ,
+        id_Match   int (11) Auto_increment  NOT NULL ,
         Adversaire Varchar (25) ,
         Adresse    Varchar (25) ,
         CP         Varchar (25) ,
-        PRIMARY KEY (id )
+        PRIMARY KEY (id_Match )
 )ENGINE=InnoDB;
 
 
@@ -108,10 +121,10 @@ CREATE TABLE Coach(
 #------------------------------------------------------------
 
 CREATE TABLE Championnat(
-        id      int (11) Auto_increment  NOT NULL ,
-        echelle Varchar (25) ,
-        niveau  Varchar (25) ,
-        PRIMARY KEY (id )
+        id_Championnat int (11) Auto_increment  NOT NULL ,
+        echelle        Varchar (25) ,
+        niveau         Varchar (25) ,
+        PRIMARY KEY (id_Championnat )
 )ENGINE=InnoDB;
 
 
@@ -121,6 +134,7 @@ CREATE TABLE Championnat(
 
 CREATE TABLE News(
         id         int (11) Auto_increment  NOT NULL ,
+        name       Varchar (25) ,
         article    Text ,
         created_at TimeStamp ,
         updated_at TimeStamp ,
@@ -150,29 +164,15 @@ CREATE TABLE Lieu(
         id      int (11) Auto_increment  NOT NULL ,
         Adresse Varchar (25) NOT NULL ,
         Nom     Varchar (25) NOT NULL ,
-        id_VS   Int NOT NULL ,
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: catégorie
+# Table: Usr_Joueur
 #------------------------------------------------------------
 
-CREATE TABLE categorie(
-        id_Categorie int (11) Auto_increment  NOT NULL ,
-        name         Varchar (25) ,
-        created_at   TimeStamp NOT NULL ,
-        updated_at   TimeStamp NOT NULL ,
-        PRIMARY KEY (id_Categorie )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: être
-#------------------------------------------------------------
-
-CREATE TABLE etre(
+CREATE TABLE Usr_Joueur(
         Licence Int NOT NULL ,
         id      Int NOT NULL ,
         PRIMARY KEY (Licence ,id )
@@ -180,10 +180,10 @@ CREATE TABLE etre(
 
 
 #------------------------------------------------------------
-# Table: Devenir
+# Table: Usr_Coach
 #------------------------------------------------------------
 
-CREATE TABLE Devenir(
+CREATE TABLE Usr_Coach(
         id      Int NOT NULL ,
         licence Int NOT NULL ,
         PRIMARY KEY (id ,licence )
@@ -195,21 +195,21 @@ CREATE TABLE Devenir(
 #------------------------------------------------------------
 
 CREATE TABLE Participer(
-        id             Int NOT NULL ,
+        id_Equipe      Int NOT NULL ,
         id_Championnat Int NOT NULL ,
-        id_VS          Int NOT NULL ,
-        PRIMARY KEY (id ,id_Championnat ,id_VS )
+        id_Match       Int NOT NULL ,
+        PRIMARY KEY (id_Equipe ,id_Championnat ,id_Match )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: Entrainer
+# Table: Coach_Equipe
 #------------------------------------------------------------
 
-CREATE TABLE Entrainer(
-        id      Int NOT NULL ,
-        licence Int NOT NULL ,
-        PRIMARY KEY (id ,licence )
+CREATE TABLE Coach_Equipe(
+        id_Equipe Int NOT NULL ,
+        licence   Int NOT NULL ,
+        PRIMARY KEY (id_Equipe ,licence )
 )ENGINE=InnoDB;
 
 
@@ -225,21 +225,19 @@ CREATE TABLE Gerer(
 )ENGINE=InnoDB;
 
 ALTER TABLE Adherent ADD CONSTRAINT FK_Adherent_id FOREIGN KEY (id) REFERENCES User(id);
-ALTER TABLE Joueur ADD CONSTRAINT FK_Joueur_id FOREIGN KEY (id) REFERENCES Equipe(id);
-ALTER TABLE Equipe ADD CONSTRAINT FK_Equipe_id_Categorie FOREIGN KEY (id_Categorie) REFERENCES categorie(id_Categorie);
+ALTER TABLE Joueur ADD CONSTRAINT FK_Joueur_id_Equipe FOREIGN KEY (id_Equipe) REFERENCES Equipe(id_Equipe);
 ALTER TABLE VisiteurLogin ADD CONSTRAINT FK_VisiteurLogin_id FOREIGN KEY (id) REFERENCES User(id);
 ALTER TABLE User ADD CONSTRAINT FK_User_licence FOREIGN KEY (licence) REFERENCES Role(licence);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_Lieu FOREIGN KEY (id_Lieu) REFERENCES Lieu(id);
-ALTER TABLE Lieu ADD CONSTRAINT FK_Lieu_id_VS FOREIGN KEY (id_VS) REFERENCES VS(id);
-ALTER TABLE etre ADD CONSTRAINT FK_etre_Licence FOREIGN KEY (Licence) REFERENCES Joueur(Licence);
-ALTER TABLE etre ADD CONSTRAINT FK_etre_id FOREIGN KEY (id) REFERENCES User(id);
-ALTER TABLE Devenir ADD CONSTRAINT FK_Devenir_id FOREIGN KEY (id) REFERENCES User(id);
-ALTER TABLE Devenir ADD CONSTRAINT FK_Devenir_licence FOREIGN KEY (licence) REFERENCES Coach(licence);
-ALTER TABLE Participer ADD CONSTRAINT FK_Participer_id FOREIGN KEY (id) REFERENCES Equipe(id);
-ALTER TABLE Participer ADD CONSTRAINT FK_Participer_id_Championnat FOREIGN KEY (id_Championnat) REFERENCES Championnat(id);
-ALTER TABLE Participer ADD CONSTRAINT FK_Participer_id_VS FOREIGN KEY (id_VS) REFERENCES VS(id);
-ALTER TABLE Entrainer ADD CONSTRAINT FK_Entrainer_id FOREIGN KEY (id) REFERENCES Equipe(id);
-ALTER TABLE Entrainer ADD CONSTRAINT FK_Entrainer_licence FOREIGN KEY (licence) REFERENCES Coach(licence);
+ALTER TABLE Usr_Joueur ADD CONSTRAINT FK_Usr_Joueur_Licence FOREIGN KEY (Licence) REFERENCES Joueur(Licence);
+ALTER TABLE Usr_Joueur ADD CONSTRAINT FK_Usr_Joueur_id FOREIGN KEY (id) REFERENCES User(id);
+ALTER TABLE Usr_Coach ADD CONSTRAINT FK_Usr_Coach_id FOREIGN KEY (id) REFERENCES User(id);
+ALTER TABLE Usr_Coach ADD CONSTRAINT FK_Usr_Coach_licence FOREIGN KEY (licence) REFERENCES Coach(licence);
+ALTER TABLE Participer ADD CONSTRAINT FK_Participer_id_Equipe FOREIGN KEY (id_Equipe) REFERENCES Equipe(id_Equipe);
+ALTER TABLE Participer ADD CONSTRAINT FK_Participer_id_Championnat FOREIGN KEY (id_Championnat) REFERENCES Championnat(id_Championnat);
+ALTER TABLE Participer ADD CONSTRAINT FK_Participer_id_Match FOREIGN KEY (id_Match) REFERENCES VS(id_Match);
+ALTER TABLE Coach_Equipe ADD CONSTRAINT FK_Coach_Equipe_id_Equipe FOREIGN KEY (id_Equipe) REFERENCES Equipe(id_Equipe);
+ALTER TABLE Coach_Equipe ADD CONSTRAINT FK_Coach_Equipe_licence FOREIGN KEY (licence) REFERENCES Coach(licence);
 ALTER TABLE Gerer ADD CONSTRAINT FK_Gerer_id FOREIGN KEY (id) REFERENCES User(id);
 ALTER TABLE Gerer ADD CONSTRAINT FK_Gerer_id_News FOREIGN KEY (id_News) REFERENCES News(id);
 ALTER TABLE Gerer ADD CONSTRAINT FK_Gerer_id_Evenement FOREIGN KEY (id_Evenement) REFERENCES Evenement(id);
