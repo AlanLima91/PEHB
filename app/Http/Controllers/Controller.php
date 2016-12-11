@@ -39,18 +39,20 @@ class Controller extends BaseController
     }
     function add_categorie()
     {
-        DB::table('Equipe')->insert([
-            [ 'categorie' => $_POST['name']] 
+        DB::table('Categorie')->insert([
+            [ 'name' => $_POST['name'],'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')] 
         ]);
         return controller::equipe();
     }
     function new_equipe()
     {
-        return view('equipe.Addequipe');
+        $categorie = controller::selectAllcategorie();
+        /*return view('equipe.Addequipe');*/
+        return view('equipe.Addequipe',array('resultats' => $categorie));
     }
-    function selectAllcategories() //Permet d'afficher toutes les catégories
+    function selectAllcategorie() //Permet d'afficher toutes les catégories
     {
-
+        $requete = DB::table('Categorie')->paginate(100);
     }
     function add_equipe()
     {
@@ -60,17 +62,18 @@ class Controller extends BaseController
     }
     function selectAllequipe()
     {
-        $requete = DB::table('equipe')->paginate(100);
+        $requete = DB::table('Equipe')->paginate(100);
     }
     function new_joueur()
     {
         $equipes = controller::selectAllequipe();
-        // dd($equipes);
         return view('equipe.Addjoueur',array('resultats' => $equipes));
     }
     function add_joueur()
     {
-
+        DB::table('Joueur')->insert([
+            ['Licence'=>$_POST['licence'],'Nom'=>$_POST['name'],'Prenom'=>$_POST['prenom'],'Annee_de_naissance'=>$_POST['year']]
+        ]);
     }
 /////////////////////////////////////////////////////////
 

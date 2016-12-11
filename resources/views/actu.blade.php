@@ -8,7 +8,7 @@
             <div class="panel-heading"><h3>{{$actu->name}}</h3></div>
 
             <div class="panel-body">
-           		{{$actu->contenu}}
+           		{{$actu->article}}
             </div>
         </div>
     </div>
