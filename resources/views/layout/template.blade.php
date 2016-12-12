@@ -22,6 +22,10 @@
                 margin: 0;
             }
 
+            .panel-heading,h3 {
+                font-weight: bold;
+            }
+
             .full-height {
                 height: 100vh;
             }

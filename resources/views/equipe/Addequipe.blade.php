@@ -7,15 +7,23 @@
                 <div class="panel-heading">Ajouter une équipe</div>
                 <div class="panel-body">
 					<form method = "post" action = "{{ url('equipe/Ajoutequipe') }}">
-						Nom : <input required type="text" name="name" id="name" value="">
-						Catégorie : <select name ="id"> <!-- On choisit parmi les catégories deja existante -->
+
+						<!-- <label for="ChampTexte">Descriptif :</label> 
+						<input type="text" id="ChampTexte" />  -->
+
+						<label for="name">Nom :</label> 
+						<input type="text" required name="name" id="name" value="">
+						</br></br>
+						<label for="id">Catégorie : </label>
+						<select id="id" name ="id"> <!-- On choisit parmi les catégories deja existante -->
 						@if(!empty($resultats))
 							@foreach($resultats as $key => $value)
 								<option value ="{{$value->id_Categorie}}">{{$value->name}}</option>;
 							@endforeach
 						@endif
 						</select>
-						<button type='submit' class='btn btn-primary'>Envoyer</button>
+						</br></br></br>
+						<button type='submit' class='btn btn-primary' style="text-align:center">Envoyer</button>
 					</form>
 				</div>
 				</div>

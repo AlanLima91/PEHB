@@ -102,6 +102,7 @@ CREATE TABLE VS(
         Adversaire Varchar (25) ,
         Adresse    Varchar (25) ,
         CP         Varchar (25) ,
+        score      Varchar (4) ,
         PRIMARY KEY (id_Match )
 )ENGINE=InnoDB;
 

@@ -7,7 +7,9 @@
                 <div class="panel-heading">Ajouter une catégorie</div>
                 <div class="panel-body">
 					<form method = "post" action = "{{ url('equipe/Ajoutcategorie') }}">
-						Nom : <input required type="text" name="name" id="name" value="">
+						<label for="name">Nom : </label>
+						<input type="text" required="required" name="name" id="name" value="">
+						</br></br>
 						<button type='submit' class='btn btn-primary'>Envoyer</button>
 					</form>
 				</div>

@@ -11,10 +11,13 @@ use DB;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    function selectAll($table)
+    {
+        return $requete = DB::table($table)->paginate(1000);
+    }
     function actu()
     {
-        $AllActu = DB::table('News')->paginate(1000);
-    	return view('actu',array('actus' => $AllActu));
+        return view('actu',array('actus' => controller::selectAll("News")));
     }
     function new_actu()
     {
@@ -31,8 +34,9 @@ class Controller extends BaseController
 
     function equipe()
     {
-    	return view('equipe');
+        return view('equipe',array('Categorie' => controller::selectAll("Categorie")),array('Equipe' => controller::selectAll("Equipe")));
     }
+#---------------------------------------------------------------
     function new_categorie()
     {
         return view('equipe.Addcategorie');
@@ -44,36 +48,30 @@ class Controller extends BaseController
         ]);
         return redirect('equipe');
     }
+#---------------------------------------------------------------
     function new_equipe()
     {
-        $categorie = controller::selectAllcategorie();
+        $categorie = controller::selectAll("Categorie");
         /*return view('equipe.Addequipe');*/
         return view('equipe.Addequipe',array('resultats' => $categorie));
-    }
-    function selectAllcategorie() //Permet d'afficher toutes les catégories
-    {
-       return $requete = DB::table('Categorie')->paginate(100);
     }
     function add_equipe()
     {
         DB::table('Equipe')->insert([
-            ['name'=> $_POST['name']]
+            ['name'=> $_POST['name'],'id_Categorie'=>$_POST['id']]
         ]);
         return redirect('equipe');
     }
-    function selectAllequipe()
-    {
-        return $requete = DB::table('Equipe')->paginate(100);
-    }
+#---------------------------------------------------------------
     function new_joueur()
     {
-        $equipes = controller::selectAllequipe();
+        $equipes = controller::selectAll("Equipe");
         return view('equipe.Addjoueur',array('resultats' => $equipes));
     }
     function add_joueur()
     {
         DB::table('Joueur')->insert([
-            ['Licence'=>$_POST['licence'],'Nom'=>$_POST['name'],'Prenom'=>$_POST['prenom'],'Annee_de_naissance'=>$_POST['year']]
+            ['Licence'=>$_POST['licence'],'Nom'=>$_POST['name'],'Prenom'=>$_POST['prenom'],'Annee_de_naissance'=>$_POST['year'],'id_Equipe'=>$_POST['id']]
         ]);
         return redirect('equipe');
     }
@@ -81,7 +79,7 @@ class Controller extends BaseController
 
     function resultats()
     {
-    	return view('resultats');
+        return view('resultats',array('Result' => controller::selectAll("VS")));
     }
 
 /////////////////////////////////////////////////////////
