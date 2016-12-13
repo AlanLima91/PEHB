@@ -15,16 +15,23 @@
                                     </div>
                                     <div class="panel-body">
                                         <a href="{{ url('equipe/Ajoutequipe') }}" class="btn btn-primary btn-lg active pull-right" style="margin-bottom: 15px;margin-right: 10px;" role="button">Crée une équipe</a>
-                                        @foreach($Equipe as $key)
+                                        @foreach($Equipe as $key2)
+                                            @if($key2->id_Categorie == $key->id_Categorie)
                                             <div class="col-md-10 col-md-offset-0">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading"><h5>{{$key->name}}</h3>
+                                                    <div class="panel-heading"><h5>{{$key2->name}}</h3>
                                                     </div>
                                                     <div class="panel-body">
                                                         <a href="{{ url('equipe/Ajoutjoueur') }}" class="btn btn-primary btn-lg active pull-right" style="margin-bottom: 15px;margin-right: 10px;" role="button">Crée un joueur</a>
+                                                        @foreach($Joueur as $key3)
+                                                            @if($key2->id_Equipe == $key3->id_Equipe)
+                                                                <a href="{{ url('equipe/joueur/'.$key3->Licence)}}">{{$key3->Nom}} {{$key3->Prenom}}</a>
+                                                            @endif
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>

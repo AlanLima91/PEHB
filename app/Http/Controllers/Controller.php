@@ -34,7 +34,12 @@ class Controller extends BaseController
 
     function equipe()
     {
-        return view('equipe',array('Categorie' => controller::selectAll("Categorie")),array('Equipe' => controller::selectAll("Equipe")));
+        $all = array(
+          'Categorie' => controller::selectAll("Categorie"),
+          'Equipe' => controller::selectAll("Equipe"),
+          'Joueur' => controller::selectAll("Joueur")  
+        );
+        return view('equipe',$all);
     }
 #---------------------------------------------------------------
     function new_categorie()
@@ -74,6 +79,11 @@ class Controller extends BaseController
             ['Licence'=>$_POST['licence'],'Nom'=>$_POST['name'],'Prenom'=>$_POST['prenom'],'Annee_de_naissance'=>$_POST['year'],'id_Equipe'=>$_POST['id']]
         ]);
         return redirect('equipe');
+    }
+    function show_joueur($id){
+        $joueur = DB::table('Joueur')->where('Licence',$id)->first();
+        // dd($joueur);
+        return view('equipe.AfficheJoueur',array('infos' => $joueur));
     }
 /////////////////////////////////////////////////////////
 

@@ -32,6 +32,7 @@ Route::post('equipe/Ajoutequipe','Controller@add_equipe');
 
 Route::get('equipe/Ajoutjoueur','Controller@new_joueur');
 Route::post('equipe/Ajoutjoueur','Controller@add_joueur');
+Route::get('equipe/joueur/{id}', 'Controller@show_joueur');
 /////////////////////////////////////////////////////////
 Route::get('resultats','Controller@resultats');
 /////////////////////////////////////////////////////////
