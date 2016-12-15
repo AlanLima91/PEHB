@@ -66,6 +66,7 @@ div.panel2.panel-body.show {
 }
 </style>
 @section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function() {
 var acc = document.getElementsByClassName("accordion");
